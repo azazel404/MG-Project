@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id          Int     @id @default(autoincrement())
+  firstName   String
+  lastName    String?
+  phoneNumber String  @unique
+  email       String  @unique
+  password    String
+  username    String? @unique
+  role        String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customers {
+  id          Int     @id @default(autoincrement())
+  photo       String?
+  firstName   String
+  lastName    String
+  phoneNumber String  @unique
+  email       String  @unique
+  password    String
+  country     String?
+  city        String?
+  state       String?
+  address     String?
+  zipCode     String?
+  isDeleted   Boolean @default(false)
+  subscriptionTransactions SubscriptionTransactions[]
+  deletedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Events {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  banner      String?
+  date        DateTime?
+  location    String?
+  photoGalleries PhotoGalleries[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PhotoGalleries {
+  id          Int     @id @default(autoincrement())
+  name       String?
+  image       String
+  event        Events @relation(fields: [eventId], references: [id])
+  eventId      Int @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+
+model Packages {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  price       String?
+  type        String?
+  subscriptionTransactions SubscriptionTransactions[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subscriptions {
+  id          Int     @id @default(autoincrement())
+  startDate   String
+  endDate     String
+  status      String?
+  subscriptionTransaction SubscriptionTransactions @relation(fields: [subscriptionTransactionId], references: [id])
+  subscriptionTransactionId       Int @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+}
+
+model SubscriptionTransactions {
+  id          Int     @id @default(autoincrement())
+  transactionDate  DateTime
+  transactioncode  String
+  totalPayment     String
+  paymentStatus    String?
+  paymentMethod    String?
+  orderType        String?
+  customer Customers @relation(fields: [customerId], references: [id])
+  customerId       Int @unique
+  package Packages @relation(fields: [packageId], references: [id])
+  packageId        Int @unique
+  subscription Subscriptions?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
