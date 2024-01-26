@@ -11,9 +11,9 @@ const List = () => {
 	return (
 		<>
 			<div className='flex flex-row justify-between items-center'>
-				<Breadcrumb pageName='Customers' />
-				<Button variant='filled' leftSection={<IconPlus />} onClick={() => router.push('/customers/create')}>
-					Create Customer
+				<Breadcrumb pageName='Collaborators' />
+				<Button variant='filled' leftSection={<IconPlus />} onClick={() => router.push('/settings/collaborators/create')}>
+					Create Colaborator
 				</Button>
 			</div>
 			<div className='flex flex-col mt-6'>

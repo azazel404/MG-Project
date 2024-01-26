@@ -1,9 +1,8 @@
 import { Metadata } from 'next'
 import DashboardLayout from '@/src/components/dashboardLayouts'
-import List from './list'
-
+import Create from './create'
 export const metadata: Metadata = {
- title: 'Tables Page ',
+ title: 'Create Customers ',
  //  description: 'This is Tables page for Admin Next.js',
  // other metadata
 }
@@ -11,8 +10,8 @@ export const metadata: Metadata = {
 const Customers = () => {
  return (
   <DashboardLayout>
-   <div className=' mx-auto max-w-screen-2xl md:p-6'>
-    <List />
+   <div className='mx-auto max-w-screen-2xl md:p-6'>
+    <Create />
    </div>
   </DashboardLayout>
  )

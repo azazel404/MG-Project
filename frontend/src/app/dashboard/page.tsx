@@ -3,8 +3,7 @@ import DashboardLayout from '@/src/components/dashboardLayouts'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'AgentBersama ',
-	description: 'This is Home Blog page for Admin Next.js',
+	title: 'MG ',
 	// other metadata
 }
 

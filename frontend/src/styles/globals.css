@@ -1,10 +1,13 @@
-@tailwind base;
+/* @tailwind base; */
+@layer tailwind {
+    @tailwind base;
+}
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply font-satoshi font-normal text-base text-body bg-whiten relative z-1;
+    @apply  font-normal text-base text-body bg-whiten relative z-1;
   }
 }
 
@@ -163,12 +166,27 @@ span.flatpickr-weekday,
     cursor : pointer;
 }
 
- .padding-310 {
+.padding-310 {
      padding-left: 310px;
  }
 
-  .padding-110 {
+.padding-110 {
       padding-left: 110px;
+  }
+
+.divider-title {
+    position: absolute;
+    top: 4px;
+    inset-inline-start: -0.65rem;
+    height: 1rem;
+    width: 0.2rem;
+    border-radius: 0.5rem;
+    /* background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+    --tw-gradient-from: rgb(var(--primary) / .5) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(var(--primary) / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    content: var(--tw-content);
+    --tw-gradient-to: rgb(var(--secondary) / .5) var(--tw-gradient-to-position); */
   }
 
 @media (max-width: 600px) {

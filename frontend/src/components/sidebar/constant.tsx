@@ -25,8 +25,8 @@ export const navigation = [
     icon: <IconUsers />,
    },
    {
-    title: 'Configuration',
-    path: '/tables',
+    title: 'Settings',
+    path: '/settings',
     icon: <IconSettings />,
    },
    //    {

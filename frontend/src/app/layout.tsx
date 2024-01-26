@@ -1,30 +1,41 @@
-'use client'
 import '../styles/globals.css'
-import '@mantine/core/styles.css'
-import React from 'react'
+import { Inter } from 'next/font/google'
+import { ReactQueryClientProvider as QueryClientProvider } from '../context/reactQueryClientProvider'
+import { ReactMantineProvider } from '../context/reactMantineProvider'
+// import { ColorSchemeScript } from '@mantine/core'
+// import { theme } from '@/theme'
 import { MantineProvider, ColorSchemeScript } from '@mantine/core'
-import { theme } from '@/theme'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactSessionProvider } from '../context/reactSessionProvider'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
- const queryClient = new QueryClient()
- return (
-  <html lang='en'>
-   <head>
-    {/* <link rel='shortcut icon' href='/favicon.svg' /> */}
-    <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no' />
-    <ColorSchemeScript />
-   </head>
-   <body suppressHydrationWarning={true}>
-    <QueryClientProvider client={queryClient}>
-     <MantineProvider theme={theme}>
-      {children}
-      {/* <div className='dark:bg-boxdark-2 dark:text-bodydark'></div> */}
-     </MantineProvider>
-     <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-   </body>
-  </html>
- )
+const inter = Inter({
+	weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+	subsets: ['latin'],
+	display: 'swap',
+})
+
+const RootLayout = ({ children }: { children: any }) => {
+	return (
+		<html lang='en'>
+			<head>
+				<ColorSchemeScript />
+				{/* <link rel='shortcut icon' href='/favicon.svg' /> */}
+				{/* <style jsx global>{`
+					html {
+						font-family: ${inter.style.fontFamily};
+					}
+				`}</style> */}
+				<meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no' />
+			</head>
+			<body suppressHydrationWarning={true} className={inter.className}>
+				<ReactSessionProvider>
+					<QueryClientProvider>
+						<ReactMantineProvider>{children}</ReactMantineProvider>
+						{/* <div className='dark:bg-boxdark-2 dark:text-bodydark'></div> */}
+					</QueryClientProvider>
+				</ReactSessionProvider>
+			</body>
+		</html>
+	)
 }
+
+export default RootLayout

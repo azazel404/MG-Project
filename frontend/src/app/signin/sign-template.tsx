@@ -18,8 +18,8 @@ const SignIn: React.FC = () => {
 							<Title order={2} ta='left' mt='md' mb={20}>
 								Login
 							</Title>
-							<TextInput label='Email address' placeholder='hello@gmail.com' size='md' />
-							<PasswordInput label='Password' placeholder='Your password' mt='md' size='md' />
+							<TextInput label='Email address' placeholder='hello@gmail.com' />
+							<PasswordInput label='Password' placeholder='Your password' mt='md' />
 							<Button variant='filled' fullWidth mt='xl' size='md'>
 								Login
 							</Button>
